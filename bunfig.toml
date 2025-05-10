@@ -1,0 +1,19 @@
+# Bun configuration file
+
+# Default entrypoint
+entrypoint = "./src/index.js"
+
+# Specify the framework (none in this case)
+framework = "none"
+
+# Set the default environment
+default_environment = "development"
+
+# Configure the development server
+[dev]
+port = 3000
+
+# Configure the test runner
+[test]
+# Include all files in the __tests__ directory
+include = ["__tests__/**/*.js"]

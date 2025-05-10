@@ -1,0 +1,20 @@
+{
+  "threshold": {
+    "min": 50000,
+    "max": 150000
+  },
+  "assets": [
+    {
+      "ticker": "AAPL",
+      "type": "stock",
+      "account": "Brokerage",
+      "qty": 50
+    },
+    {
+      "ticker": "Cash",
+      "type": "cash",
+      "account": "Savings",
+      "qty": 10000
+    }
+  ]
+}
