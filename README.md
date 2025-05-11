@@ -130,7 +130,7 @@ crontab -e
 
 Add this line at the bottom:
 ```bash
-0 6 * * 2-6 /home/vsyerik/Apps/PortfolioMonitor/run.sh
+0 6 * * 2-6 /home/{user}/Apps/PortfolioMonitor/run.sh
 ```
 Explanation:
 
