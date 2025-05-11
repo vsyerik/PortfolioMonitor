@@ -24,6 +24,10 @@ scp data/portfolio.local.json ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}/data/
 # Send email config to Pi (as local config)
 scp config/email.local.json ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}/config/email.json
 
+echo "📦 Running \`bun install\` on the Raspberry Pi..."
+# shellcheck disable=SC2029
+ssh ${REMOTE_USER}@${REMOTE_HOST} "cd ${REMOTE_PATH} && ~/.bun/bin/bun install"
+
 echo "✅ Deployment complete using portfolio.local.json."
 echo "ℹ️ To run manually:"
 echo "   ssh ${REMOTE_USER}@${REMOTE_HOST}"
