@@ -111,6 +111,38 @@ This will:
   Tue–Sat @ 6:00 AM Central Time
   ```
 
+### 4. Manual cron setup
+
+Make sure to execute in the deployed directory:
+```bush
+chmod +x run.sh
+```
+
+Set your Raspberry Pi timezone to CT (if not already)
+```bush
+sudo timedatectl set-timezone America/Chicago 
+```
+
+Edit your crontab
+```bush
+crontab -e
+```
+
+Add this line at the bottom:
+```bash
+0 6 * * 2-6 /home/vsyerik/Apps/PortfolioMonitor/run.sh
+```
+Explanation:
+
+•	0 6 → 6:00 AM
+
+•	* * → every month/day
+
+•	2-6 → Tuesday (2) to Saturday (6)
+
+•	run.sh → already handles logging and execution
+
+
 ---
 
 ## 🧪 Manual Run
