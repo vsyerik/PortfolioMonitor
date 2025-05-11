@@ -2,6 +2,7 @@
 
 data/portfolio.local.json
 scripts/first-deploy.sh
+config/email.local.json
 
 # Runtime
 logs/

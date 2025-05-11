@@ -21,6 +21,8 @@ rsync -avz $EXCLUDES ./ ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}
 # --- PUSH PERSONAL CONFIG AS portfolio.json ---
 echo "📤 Syncing personal config (portfolio.local.json → portfolio.json)..."
 scp data/portfolio.local.json ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}/data/portfolio.json
+# Send email config to Pi (as local config)
+scp config/email.local.json ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}/config/email.json
 
 echo "✅ Deployment complete using portfolio.local.json."
 echo "ℹ️ To run manually:"
