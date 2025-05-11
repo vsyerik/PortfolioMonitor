@@ -170,12 +170,40 @@ Use this for debugging or dry-runs before the scheduled job runs.
 
 ## 📬 Alerts
 
-By default, alerts are stubbed to `console.log`.  
-In future versions, you can extend `src/notifier.js` to:
+Alerts are now implemented in `src/notifier.js` using `nodemailer`. When the portfolio value crosses the defined thresholds, an email notification is sent.
 
-- Send email via `nodemailer`
-- Trigger webhook
-- Write to a status file or push service
+### Email Configuration
+
+The email settings are defined in `config/email.local.json`. Ensure the following fields are correctly set:
+
+```json
+{
+  "host": "smtp.gmail.com",
+  "port": 465,
+  "secure": true,
+  "auth": {
+    "user": "your-email@gmail.com",
+    "pass": "your-email-password"
+  },
+  "to": "recipient-email@example.com"
+}
+```
+
+### How It Works
+
+- The `notifier.js` module sends an email with the portfolio value, threshold status, and date.
+
+- Ensure the email.local.json file is correctly configured and deployed to the target machine.
+
+### Testing Alerts
+
+To test the alert system, manually run the script:
+
+```bash
+bun run ./__tests__/notifier.test.js
+```
+
+Check the logs and verify that an email is sent when thresholds are crossed.
 
 ---
 
