@@ -1,33 +1,47 @@
-import { readFile } from 'fs/promises';
-import path from 'path';
+import { readFile } from 'fs/promises'
+import path from 'path'
+
+/**
+ * @typedef {Object} Asset
+ * @property {string} ticker - The ticker symbol for the asset.
+ * @property {string} type - The type/category of the asset (e.g., stock, bond).
+ * @property {string} account - The account associated with the asset.
+ * @property {number} qty - The quantity of the asset.
+ */
+
+/**
+ * @typedef {Object} Config
+ * @property {{min: number, max: number}} threshold - The threshold configuration with minimum and maximum values.
+ * @property {Asset[]} assets - An array of assets in the portfolio.
+ */
 
 /**
  * Load and validate the portfolio config JSON
- * @returns {Promise<{ threshold: { min: number, max: number }, assets: Array<{ ticker: string, type: string, account: string, qty: number }> }>}
+ * @returns {Promise<Config>}
  */
-export async function loadPortfolioConfig() {
-  const configPath = path.resolve('data', 'portfolio.json');
+export async function loadPortfolioConfig () {
+  const configPath = path.resolve('data', 'portfolio.json')
 
-  let raw;
+  let raw
   try {
-    raw = await readFile(configPath, 'utf-8');
+    raw = await readFile(configPath, 'utf-8')
   } catch (err) {
-    throw new Error(`Failed to read portfolio config: ${err.message}`);
+    throw new Error(`Failed to read portfolio config: ${err.message}`)
   }
 
-  let config;
+  let config
   try {
-    config = JSON.parse(raw);
+    config = JSON.parse(raw)
   } catch (err) {
-    throw new Error(`Invalid JSON in portfolio file: ${err.message}`);
+    throw new Error(`Invalid JSON in portfolio file: ${err.message}`)
   }
 
   if (!config.threshold || typeof config.threshold.min !== 'number' || typeof config.threshold.max !== 'number') {
-    throw new Error('Invalid or missing threshold configuration.');
+    throw new Error('Invalid or missing threshold configuration.')
   }
 
   if (!Array.isArray(config.assets)) {
-    throw new Error('Assets must be an array.');
+    throw new Error('Assets must be an array.')
   }
 
   for (const asset of config.assets) {
@@ -37,9 +51,9 @@ export async function loadPortfolioConfig() {
       typeof asset.account !== 'string' ||
       typeof asset.qty !== 'number'
     ) {
-      throw new Error(`Invalid asset entry: ${JSON.stringify(asset)}`);
+      throw new Error(`Invalid asset entry: ${JSON.stringify(asset)}`)
     }
   }
 
-  return config;
+  return config
 }
