@@ -9,7 +9,16 @@ import nodemailer from 'nodemailer'
  * @param {string} date - e.g. '2025-05-10'
  */
 export async function notify (thresholdStatus, portfolioValue, date) {
+  // Only send notifications for threshold breaches
   if (thresholdStatus === 'ok') return Promise.resolve()
+
+  // Format portfolio value as currency with no decimals and thousand separators
+  const formattedValue = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  }).format(portfolioValue)
 
   // Load email config
   const configPath = path.resolve('config', 'email.json')
