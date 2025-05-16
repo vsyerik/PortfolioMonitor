@@ -6,7 +6,7 @@ set -e
 REMOTE_USER="vsyerik"
 REMOTE_HOST="rpi-4.local"
 REMOTE_PATH="~/Apps/PortfolioMonitor"
-EXCLUDES="--exclude=data/portfolio.json --exclude=data/portfolio.local.json --exclude=scripts/first-deploy.sh --exclude=logs --exclude=db --exclude=node_modules --exclude=.git --exclude=.gitignore --exclude=README.md"
+EXCLUDES="--exclude=data/portfolio.json --exclude=data/portfolio.local.json --exclude=scripts/first-deploy.sh --exclude=logs --exclude=db --exclude=node_modules --exclude=.git --exclude=.gitignore --exclude=README.md --exclude=.DS_Store --exclude=.idea/ --exclude=**/.DS_Store"
 
 # --- CHECK LOCAL CONFIG EXISTS ---
 if [ ! -f data/portfolio.local.json ]; then
@@ -26,7 +26,7 @@ scp config/email.local.json ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}/config/
 
 echo "📦 Running \`bun install\` on the Raspberry Pi..."
 # shellcheck disable=SC2029
-ssh ${REMOTE_USER}@${REMOTE_HOST} "cd ${REMOTE_PATH} && ~/.bun/bin/bun install"
+ssh ${REMOTE_USER}@${REMOTE_HOST} "cd ${REMOTE_PATH} && ~/.bun/bin/bun install && chmod +x run.sh"
 
 echo "✅ Deployment complete using portfolio.local.json."
 echo "ℹ️ To run manually:"
