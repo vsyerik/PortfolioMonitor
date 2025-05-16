@@ -5,16 +5,25 @@
   },
   "assets": [
     {
+      "ticker": "VFIAX",
+      "type": "stock",
+      "account": "Vanguard",
+      "qty": 20,
+      "msSymbol": "0P00002YHQ"
+    },
+    {
       "ticker": "AAPL",
       "type": "stock",
       "account": "Brokerage",
-      "qty": 50
+      "qty": 50,
+      "msSymbol": null
     },
     {
       "ticker": "Cash",
       "type": "cash",
       "account": "Savings",
-      "qty": 10000
+      "qty": 10000,
+      "msSymbol": null
     }
   ]
 }

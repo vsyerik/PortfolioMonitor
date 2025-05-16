@@ -9,9 +9,8 @@
     "@types/bun": "latest"
   },
   "dependencies": {
-    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.13",
     "sqlite3": "^5.1.7",
-    "yahoo-finance2": "^2.13.3",
-    "nodemailer": "^6.9.13"
+    "yahoo-finance2": "^2.13.3"
   }
 }

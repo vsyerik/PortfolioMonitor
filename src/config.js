@@ -7,6 +7,7 @@ import path from 'path'
  * @property {string} type - The type/category of the asset (e.g., stock, bond).
  * @property {string} account - The account associated with the asset.
  * @property {number} qty - The quantity of the asset.
+ * @property {string|null} [msSymbol] - The Microsoft Finance symbol for the asset (optional).
  */
 
 /**
@@ -49,7 +50,8 @@ export async function loadPortfolioConfig () {
       typeof asset.ticker !== 'string' ||
       typeof asset.type !== 'string' ||
       typeof asset.account !== 'string' ||
-      typeof asset.qty !== 'number'
+      typeof asset.qty !== 'number' ||
+      (asset.msSymbol !== undefined && asset.msSymbol !== null && typeof asset.msSymbol !== 'string')
     ) {
       throw new Error(`Invalid asset entry: ${JSON.stringify(asset)}`)
     }

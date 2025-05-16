@@ -42,6 +42,12 @@ export async function notify (thresholdStatus, portfolioValue, date) {
   }
 
   try {
+    // Skip sending email if the recipient is your.email@gmail.com
+    if (emailConfig.to === 'your.email@gmail.com') {
+      console.log(`⏭️ Skipping email alert to test address (your.email@gmail.com)`)
+      return Promise.resolve()
+    }
+
     await transporter.sendMail(mailOptions)
     console.log(`✅ Email alert sent for ${thresholdStatus} threshold.`)
   } catch (err) {
